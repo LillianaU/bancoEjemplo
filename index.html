@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjetas de crédito - BancoJoven</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+    }
+    
+    .top-bar {
+      background-color: #111827;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #2d3748;
+    }
+    
+    .top-bar button {
+      background: none;
+      border: none;
+      margin-right: 15px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #fff;
+    }
+    
+    .address-bar {
+      flex-grow: 1;
+      padding: 5px 10px;
+      color: #9ca3af;
+      font-size: 14px;
+      background-color: #1f2937;
+      border-radius: 20px;
+    }
+    
+    .top-bar-icons {
+      display: flex;
+    }
+    
+    .top-bar-icons button {
+      margin-left: 10px;
+    }
+    
+    .notification-banner {
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+      color: #fff;
+      padding: 12px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .main-nav {
+      background-color: #111827;
+      color: #fff;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .main-nav-items {
+      display: flex;
+    }
+    
+    .main-nav-items a {
+      color: #fff;
+      text-decoration: none;
+      padding: 15px;
+      display: block;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .main-nav-items a:hover {
+      background-color: #4f46e5;
+      border-bottom: 2px solid #c4b5fd;
+    }
+    
+    .logo-container {
+      padding: 20px;
+      background-color: #111827;
+    }
+    
+    .logo {
+      width: 180px;
+    }
+    
+    .secondary-nav {
+      background-color: #fff;
+      display: flex;
+      padding: 0 20px;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .secondary-nav a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #111827;
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .secondary-nav a:hover {
+      color: #4f46e5;
+    }
+    
+    .secondary-nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+    }
+    
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    
+    .action-buttons button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .digital-btn {
+      background-color: #111827;
+      color: #fff;
+    }
+    
+    .digital-btn:hover {
+      background-color: #4f46e5;
+      transform: translateY(-2px);
+    }
+    
+    .enter-btn {
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+    }
+    
+    .enter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px -1px rgba(99, 102, 241, 0.5);
+    }
+    
+    .breadcrumb {
+      padding: 15px 20px;
+      background-color: #fff;
+      font-size: 14px;
+      color: #6b7280;
+    }
+    
+    .breadcrumb a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .breadcrumb span {
+      margin: 0 5px;
+    }
+    
+    .content {
+      display: flex;
+      padding: 40px 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      margin: 20px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .content-text {
+      flex: 1;
+      padding-right: 40px;
+    }
+    
+    .content-image {
+      flex: 1;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .content-image img {
+      width: 100%;
+      border-radius: 20px;
+      transition: transform 0.5s ease;
+    }
+    
+    .content-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    h1 {
+      font-size: 48px;
+      color: #111827;
+      margin-bottom: 20px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .content-text p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #4b5563;
+    }
+    
+    .search-box {
+      padding: 15px;
+      width: 300px;
+      border: 2px solid #e5e7eb;
+      border-radius: 25px;
+      font-size: 16px;
+      background-color: #f9fafb;
+      transition: all 0.3s ease;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    
+    .card-types {
+      display: flex;
+      margin: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-type {
+      flex: 1;
+      padding: 25px;
+      text-align: center;
+      font-weight: 600;
+      color: #111827;
+      border-right: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .card-type:hover {
+      background-color: #4f46e5;
+      color: #fff;
+      transform: translateY(-5px);
+    }
+    
+    .card-type:last-child {
+      border-right: none;
+    }
+    
+    .colorful-arcs {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      z-index: 1;
+    }
+    
+    .arc {
+      position: absolute;
+      border: 10px solid;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      border-color: transparent;
+      animation: float 4s infinite ease-in-out alternate;
+    }
+    
+    .arc1 {
+      border-top-color: #6366f1;
+      transform: rotate(45deg);
+      animation-delay: 0s;
+    }
+    
+    .arc2 {
+      border-right-color: #10b981;
+      transform: rotate(15deg) scale(1.2);
+      animation-delay: 1s;
+    }
+    
+    .arc3 {
+      border-bottom-color: #ec4899;
+      transform: rotate(-15deg) scale(0.9);
+      animation-delay: 2s;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+      100% {
+        transform: translateY(5px) rotate(-5deg);
+      }
+    }
+    
+    .transferring-data {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: #111827;
+      color: #9ca3af;
+      padding: 8px 15px;
+      font-size: 12px;
+      width: 100%;
+    }
+
+    /* New Youth-Focused Elements */
+    .emoji-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+    }
+
+    .benefits-container {
+      display: flex;
+      margin-top: 30px;
+      gap: 15px;
+    }
+
+    .benefit-card {
+      background: #f9fafb;
+      border-radius: 15px;
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      border-color: #6366f1;
+      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
+    }
+
+    .benefit-title {
+      font-weight: 700;
+      color: #111827;
+      margin: 10px 0;
+    }
+
+    .benefit-text {
+      color: #6b7280;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <button>←</button>
+    <button>→</button>
+    <button>×</button>
+    <div class="address-bar">https://www.bancojoven.com/tarjetas-de-credito</div>
+    <div class="top-bar-icons">
+      <button>♡</button>
+      <button>🔒</button>
+      <button>👤</button>
+    </div>
+  </div>
+  
+  <div class="notification-banner">
+    <span>📱 Descarga nuestra nueva app BancoJoven antes del 1 de abril. ¡Paga con el móvil y gana cashback!</span>
+  </div>
+  
+  <div class="main-nav">
+    <div class="main-nav-items">
+      <a href="#">Estudiantes</a>
+      <a href="#">Primer Empleo</a>
+      <a href="#">Freelancers</a>
+      <a href="#">Emprendedores ▼</a>
+      <a href="#">Mi360</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="main-nav-items">
+      <a href="#">Ayuda</a>
+      <a href="#">Comunidad</a>
+    </div>
+  </div>
+  
+  <div class="logo-container">
+    <svg class="logo" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 10C25.523 10 30 14.477 30 20C30 25.523 25.523 30 20 30C14.477 30 10 25.523 10 20C10 14.477 14.477 10 20 10Z" fill="#6366f1"/>
+      <path d="M45 12H75V28H45V12Z" fill="#4f46e5"/>
+      <path d="M80 15H160V17H80V15Z" fill="#fff"/>
+      <path d="M80 19H140V21H80V19Z" fill="#fff"/>
+      <path d="M80 23H150V25H80V23Z" fill="#fff"/>
+    </svg>
+  </div>
+  
+  <div class="secondary-nav">
+    <a href="#">Inicio</a>
+    <a href="#">Productos</a>
+    <a href="#">Inversiones</a>
+    <a href="#">Finanzas 101</a>
+    <div class="action-buttons">
+      <button class="digital-btn">App BancoJoven</button>
+      <button class="enter-btn">Ingresar</button>
+    </div>
+  </div>
+  
+  <div class="breadcrumb">
+    <a href="#">Estudiantes</a>
+    <span>→</span>
+    <a href="#">Tarjetas de crédito</a>
+  </div>
+  
+  <div class="content">
+    <div class="content-text">
+      <h1>Tarjetas para tu estilo</h1>
+      <p>Es hora de elegir tu primera tarjeta. Beneficios exclusivos para jóvenes: sin cuota anual, cashback en streaming, comida a domicilio y transporte. ¡Empieza a construir tu historial crediticio!</p>
+      <input type="text" class="search-box" placeholder="¿Qué estás buscando?">
+      
+      <div class="benefits-container">
+        <div class="benefit-card">
+          <div class="emoji-badge">🔥</div>
+          <div class="benefit-title">Sin comisiones</div>
+          <div class="benefit-text">Tarjetas sin cuota de mantenimiento para estudiantes</div>
+        </div>
+        <div class="benefit-card">
+          <div class="emoji-badge">🎵</div>
+          <div class="benefit-title">10% en streaming</div>
